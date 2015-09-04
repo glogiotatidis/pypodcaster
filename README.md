@@ -50,7 +50,7 @@ pypodcaster will read id3 tags and write a podcast.xml with settings from channe
 
 ## Notes
 
-[Feedburner](http://feedburner.com) as a middle-man to:
+Use [Feedburner](http://feedburner.com) as a middle-man to:
 
 - Collect statistics and subscriber count
 - Monitor the health of your podcast
