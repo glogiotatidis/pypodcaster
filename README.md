@@ -2,9 +2,9 @@
 
 Simple Podcast Publishing
 
-`pypodcaster` is meant to be one of the simplist podcast publishers available. It serves to automatically create an rss feed based on ID3 tags of media files in a given directory. Podcast media can be served from an existing web server, or hosted on a public Dropbox folder.
+`pypodcaster` is meant to be one of the simplist podcast publishers available. It creates a standard RSS feed based on ID3 tags of media files in a given directory. Podcast media can be served from an existing web server or hosted on a public Dropbox folder.
 
-## Install
+## Install (not available yet)
 
     pip install pypodcaster
 
@@ -18,24 +18,24 @@ Create a directory to hold your podcast media. e.g. `podcast` folder on a web se
 
     mkdir podcast
 
-Enter channel informaion into `channel.yml`
+Enter channel information into `channel.yml`
 
 ```
-:title: 'Podcast Title'
-:subtitle: 'Podcast Subtitle'
-:url: 'http://website.com'
-:enclosures_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/'
-:language: 'en-us'
-:copyright: 'Copyright 2015 Podcast Creator'
-:author: 'Author name or Company'
-:description: 'A description of the podcast'
-:owner:
-  :name: 'John Doe'
-  :email: 'john@doe.com'
-:image_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/cover.jpb'
-:categories: [['Religion & Spirituality', 'Christianity']]
-:explicit: No
-:keywords: [comma, separated, list]
+title: 'Podcast Title'
+subtitle: 'Podcast Subtitle'
+url: 'http://website.com'
+enclosures_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/'
+language: 'en-us'
+copyright: 'Copyright 2015 Podcast Creator'
+author: 'Author name or Company'
+description: 'A description of the podcast'
+owner:
+  name: 'John Doe'
+  email: 'john@doe.com'
+image_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/cover.jpb'
+categories: ['Religion & Spirituality', 'Christianity']
+explicit: No
+keywords: [comma, separated, list]
 ```
 
 [See iTunes podcast specs](http://www.apple.com/itunes/podcasts/specs.html)
@@ -46,7 +46,7 @@ Enter channel informaion into `channel.yml`
 
     pypodcaster > podcast.xml
 
-pypodcaster will read id3 tags and write a podcast.xml with settings from channel.yml. Run the command everytime you wish to make a change to the podcast.
+`pypodcaster` will create `podcast.xml` with settings from `channel.yml`. Run the command every time you wish to update the podcast feed.
 
 ## Notes
 
