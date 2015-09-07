@@ -20,25 +20,28 @@ Create a directory to hold your podcast media. e.g. `podcast` folder on a web se
 
 Enter channel information into `channel.yml`
 
+Note: `title`, `link`, and `description` are required fields.
+
 ```
 title: 'Podcast Title'
-subtitle: 'Podcast Subtitle'
-url: 'http://website.com'
-enclosures_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/'
+link: 'http://link-to-website-corresponding-to-the-channel.com'
+description: 'Phrase or sentence describing the channel.'
 language: 'en-us'
-copyright: 'Copyright 2015 Podcast Creator'
+copyright: 'Copyright notice for content in the channel.'
+subtitle: 'Podcast Subtitle'
+media_dir: 'https://dl.dropboxusercontent.com/u/12345678/podcast/'
 author: 'Author name or Company'
-description: 'A description of the podcast'
 owner:
   name: 'John Doe'
   email: 'john@doe.com'
-image_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/cover.jpb'
+image_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/cover.jpg'
 categories: ['Religion & Spirituality', 'Christianity']
 explicit: No
 keywords: [comma, separated, list]
 ```
 
-[See iTunes podcast specs](http://www.apple.com/itunes/podcasts/specs.html)
+- [iTunes Podcast Specs](http://www.apple.com/itunes/podcasts/specs.html)
+- [RSS 2.0 Specifications](https://validator.w3.org/feed/docs/rss2.html)
 
 ## Usage
 
