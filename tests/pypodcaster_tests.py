@@ -1,13 +1,15 @@
 __author__ = 'mantlepro'
 
+import yaml
 from nose.tools import *
-import pypodcaster
+from pypodcaster.objects import Channel, Item
 
-def setup():
-    print "SETUP!"
+def test_channel()
+    options = yaml.safe_load(open("/home/mantlepro/Documents/pypodcaster/channel.yml"))
+    channel = Channel('/home/mantlepro/Desktop', options)
 
-def teardown():
-    print "TEAR DOWN!"
+def test_item()
+    options = yaml.safe_load(open("/home/mantlepro/Documents/pypodcaster/channel.yml"))
+    item = Item('/home/mantlepro/Desktop/Spotlight.mp3', options)
 
-def test_basic():
-    print "I RAN!"
+# def test_pypodcaster()
