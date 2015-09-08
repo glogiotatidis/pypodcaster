@@ -26,6 +26,11 @@ parser.add_argument("-c", "--channel", help="Specify channel definition instead 
 parser.add_argument("-o", "--output", help="Output to FILE instead of stdout")
 args = parser.parse_args()
 
+# TODO: Add validation layer:
+  # TODO: Are urls valid?
+  # TODO: Does cover image exist?
+  # TODO: Can I write to specified output?
+
 if args.channel:
     options = yaml.safe_load(open(args.channel))
 else:
