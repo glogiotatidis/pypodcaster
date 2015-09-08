@@ -5,11 +5,11 @@ language: 'en-us'
 copyright: 'Copyright notice for channel content.'
 subtitle: 'Podcast Subtitle'
 podcast_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/'
+image: 'cover.jpg' # place default cover image relative to podcast_url
 author: 'Author name or Company'
 owner:
   name: 'John Doe'
   email: 'john@doe.com'
-image: 'cover.jpg' # place default cover image in directory with mp3 files (under podcast_url)
 categories: ['Religion & Spirituality', 'Christianity']
 explicit: No
 keywords: [comma, separated, list]
