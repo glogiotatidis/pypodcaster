@@ -17,7 +17,8 @@
             <itunes:name>{{ channel.owner.name|e }}</itunes:name>
             <itunes:email>{{ channel.owner.email }}</itunes:email>
         </itunes:owner>
-        <itunes:image href="{{ channel.image_url }}" />
+        <itunes:keywords>{{ channel.keywords|join(', ') }}</itunes:keywords>
+        <itunes:image href="{{ channel.image_url|urlencode }}" />
         {% for category in channel.categories -%}
         {% if loop.length > 1 -%}
         {% if loop.first -%}
@@ -33,6 +34,7 @@
         <itunes:category text="{{ category|e }}" />
         {% endif -%}
         {% endfor -%}
+        <itunes:explicit>{{ channel.explicit }}</itunes:explicit>
         <generator>{{ generator}}</generator>
         <lastBuildDate>{{ last_build_date }}</lastBuildDate>
         {% for item in items -%}
@@ -66,12 +68,12 @@
                 {{ item.album|e }}
                 {% endif %}
             </description>
-            <itunes:image href="{{ item.image }}" />
-            <enclosure url="{{ item.url }}" length="{{ item.length }}" type="audio/mpeg" />
-            <guid>{{ item.url }}</guid>
+            <itunes:image href="{{ item.image_url|urlencode }}" />
+            <enclosure url="{{ item.url|urlencode }}" length="{{ item.length }}" type="audio/mpeg" />
+            <guid>{{ item.url|urlencode }}</guid>
             <pubDate>{{ item.pub_date }}</pubDate>
             <itunes:duration>{{ item.duration }}</itunes:duration>
         </item>
-        {%- endfor %}
+        {% endfor -%}
     </channel>
 </rss>
