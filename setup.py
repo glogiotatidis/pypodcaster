@@ -10,7 +10,7 @@ except ImportError:
                 'download_url': 'https://github.com/mantlepro/pypodcaster/archive/master.zip',
                 'author_email': 'mantlepro@gmail.com',
                 'version': '0.1',
-                'install_requires': ['Jinja2','eyeD3'],
+                'install_requires': ['jinja2','eyed3','pyyaml'],
                 'packages': ['pypodcaster'],
                 'scripts': [],
                 'name': 'pypodcaster'
