@@ -2,12 +2,10 @@
 
 __author__ = 'mantlepro'
 
-import glob
-from jinja2 import Environment, PackageLoader
-import eyeD3, os
+import eyeD3, os, glob, yaml, ntpath
 from datetime import datetime
 from time import strftime, gmtime
-import ntpath
+from jinja2 import Environment, PackageLoader
 
 source_files = []
 
@@ -41,6 +39,7 @@ class Channel:
         print template_xml.render(channel=options,
                                   items=items(),
                                   last_build_date=strftime("%a, %d %b %Y %T %Z"),
+                                  #TODO: add version number
                                   generator="pypodcaster"
                                   )
 def add_files(src):
