@@ -17,37 +17,57 @@
             <itunes:name>{{ channel.owner.name|e }}</itunes:name>
             <itunes:email>{{ channel.owner.email }}</itunes:email>
         </itunes:owner>
-        <itunes:image href="{{ channel.image }}"/>
-        <itunes:category text="Technology">
-            <itunes:category text="Gadgets"/>
+        <itunes:image href="{{ channel.image_url }}" />
+        {% for category in channel.categories -%}
+        {% if loop.length > 1 -%}
+        {% if loop.first -%}
+        <itunes:category text="{{ category|e }}">
+            {%- endif -%}
+            {%- if not loop.first %}
+            <itunes:category text="{{ category|e }}" />
+            {%- endif -%}
+            {%- if loop.last %}
         </itunes:category>
-        <itunes:category text="TV &amp; Film"/>
-        <generator>{{ channel.generator}}</generator>
-        <lastBuildDate>{{ channel.last_build_date }}</lastBuildDate>
+        {% endif -%}
+        {% else -%}
+        <itunes:category text="{{ category|e }}" />
+        {% endif -%}
+        {% endfor -%}
+        <generator>{{ generator}}</generator>
+        <lastBuildDate>{{ last_build_date }}</lastBuildDate>
         {% for item in items -%}
         <item>
             <title>{{ item.title|e }}</title>
-            <author>{{ item.artist|e }}</author>
+            <itunes:author>{{ item.artist|e }}</itunes:author>
             <itunes:subtitle>{{ item.subtitle|e }}</itunes:subtitle>
             <itunes:summary>
                 {% if item.comment -%}
-                <p>
-                    {{ item.artist }}
-                    <br/>
-                    {{ item.album }}
-                </p>
-                <p>
-                    {{ item.comment }}
-                </p>
+                {{ item.artist }}
+                &#xD;&#xA;
+                {{ item.album }}
+                &#xD;&#xA;
+                {{ item.comment }}
                 {%- else -%}
-                <p>{{ item.artist }}
-                    <br/>
-                    {{ item.album }}
-                </p>
-                {%- endif %}
+                {{ item.artist }}
+                &#xD;&#xA;
+                {{ item.album }}
+                {% endif %}
             </itunes:summary>
-            <itunes:image href="{{ item.image }}"/>
-            <enclosure url="{{ item.url }}" length="{{ item.length }}" type="audio/mpeg"/>
+            <description>
+                {% if item.comment -%}
+                {{ item.artist|e }}
+                &#xD;&#xA;
+                {{ item.album|e }}
+                &#xD;&#xA;
+                {{ item.comment|e }}
+                {%- else -%}
+                {{ item.artist|e }}
+                &#xD;&#xA;
+                {{ item.album|e }}
+                {% endif %}
+            </description>
+            <itunes:image href="{{ item.image }}" />
+            <enclosure url="{{ item.url }}" length="{{ item.length }}" type="audio/mpeg" />
             <guid>{{ item.url }}</guid>
             <pubDate>{{ item.pub_date }}</pubDate>
             <itunes:duration>{{ item.duration }}</itunes:duration>

@@ -57,7 +57,6 @@ Use [Feedburner](http://feedburner.com) as a middle-man to:
 - Analyze, optimize, and troubleshoot
 - Seamlessly update your feed's location
 
-
 ## Podcast Specifications
 
 - [iTunes Podcast Specs](http://www.apple.com/itunes/podcasts/specs.html)

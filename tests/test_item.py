@@ -8,5 +8,3 @@ from datetime import datetime
 
 options = yaml.safe_load(open("/home/mantlepro/Documents/pypodcaster/channel.yml"))
 item = Item('/home/mantlepro/Desktop/Spotlight.mp3', options)
-
-print item.pub_date
