@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+""""""
+
 import argparse, yaml
 from pypodcaster.objects import Channel
 
@@ -20,14 +22,16 @@ Examples:
 """
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-c", "--channel", help="Read the channel definition from FILE instead current directory's channel.yml")
+parser.add_argument("-c", "--channel", help="Specify channel definition instead of current directory's channel.yml")
+parser.add_argument("-o", "--output", help="Output to FILE instead of stdout")
 args = parser.parse_args()
 
 if args.channel:
     options = yaml.safe_load(open(args.channel))
 else:
-    options = yaml.safe_load(open("channel.yml"))
+    options = yaml.safe_load(open(os.getcwd() + "/channel.yml"))
 
-print(Channel(sources, options))
-
-# TODO: Add last build date on execute
+if args.output:
+  # TODO: Add file writer
+else:
+  print Channel(sources, options)
