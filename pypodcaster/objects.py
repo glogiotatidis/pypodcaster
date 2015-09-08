@@ -65,13 +65,13 @@ class Item:
             id3 = mp3_file.getTag()
             id3.link(file_path)
             # TODO: check for episodic images and add default if none provided
-            self.image_url = "%s%s" % (options.get("podcast_url"),options.get("image"))
+            self.image_url = "%s/%s" % (options.get("podcast_url"),options.get("image"))
             self.title = id3.getTitle()
             self.album = id3.getAlbum()
             self.comment = id3.getComment()
             self.artist = id3.getArtist()
             self.subtitle = options.get("subtitle")
-            self.url = "%s%s" % (options.get("podcast_url"),ntpath.basename(file_path))
+            self.url = "%s/%s" % (options.get("podcast_url"),ntpath.basename(file_path))
             # date should be in RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
             self.pub_date = datetime.fromtimestamp(os.stat(file_path).st_mtime).strftime("%a, %d %b %Y %T ") + strftime('%Z')
             self.length = os.stat(file_path).st_size
