@@ -29,7 +29,7 @@ description: 'Phrase or sentence describing the channel.'
 language: 'en-us'
 copyright: 'Copyright notice for content in the channel.'
 subtitle: 'Podcast Subtitle'
-media_dir: 'https://dl.dropboxusercontent.com/u/12345678/podcast/'
+podcast_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/'
 author: 'Author name or Company'
 owner:
   name: 'John Doe'
