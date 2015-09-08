@@ -65,7 +65,7 @@ class Item:
             id3 = mp3_file.getTag()
             id3.link(file_path)
             # TODO: check for episodic images and add default if none provided
-            self.image_url = options.get("image_url")
+            self.image_url = "%s%s" % (options.get("podcast_url"),options.get("image"))
             self.title = id3.getTitle()
             self.album = id3.getAlbum()
             self.comment = id3.getComment()
