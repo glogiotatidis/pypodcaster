@@ -2,9 +2,9 @@
 
 Simple Podcast Publishing
 
-`pypodcaster` is meant to be one of the simplist podcast publishers available. It creates a standard RSS feed based on ID3 tags of media files in a given directory. Podcast media can be served from an existing web server or hosted on a public Dropbox folder.
+`pypodcaster` is meant to be one of the simplist podcast publishers available. It generates a standard RSS feed based on the ID3 tags of media files in a given directory. Podcast media can be served from a public-facing HTML server or hosted from the Public folder in Dropbox.
 
-## Install (not available yet)
+## Installation (not available yet)
 
     pip install pypodcaster
 
