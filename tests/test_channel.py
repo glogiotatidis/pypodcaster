@@ -7,4 +7,4 @@ import yaml
 from pypodcaster.objects import Channel
 
 options = yaml.safe_load(open("/home/mantlepro/Documents/pypodcaster/channel.yml"))
-channel = Channel('/home/mantlepro/Desktop/Spotlight.mp3', options)
+channel = Channel('/home/mantlepro/Desktop', options)

@@ -33,7 +33,7 @@ class Channel:
             all_items = []
             for src in source_files:
                 all_items.append(Item(src, options))
-                all_items.sort(self, key=lambda item: item.options.get("pub_date"))
+                sorted(all_items, key=lambda item: item.options.get("pub_date"))
             return all_items
 
         # load templates
@@ -72,7 +72,6 @@ class Item:
             self.artist = id3.getArtist()
             self.subtitle = options.get("subtitle")
             self.url = "%s%s" % (options.get("podcast_url"),ntpath.basename(file_path))
-            # TODO: check for mp3 date tag. If none, set to file's mtime or default in channel.yml
             # date should be in RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
             timezone=strftime('%Z')
             self.pub_date = datetime.fromtimestamp(os.stat(file_path).st_mtime).strftime("%a, %d %b %Y %T ") + timezone
