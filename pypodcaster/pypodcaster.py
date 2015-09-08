@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 
-import argparse
-
-import yaml
-
-import pypodcaster
+import argparse, yaml
+from pypodcaster.objects import Channel
 
 __author__ = 'mantlepro'
 
@@ -31,5 +28,5 @@ if args.channel:
 else:
     options = yaml.safe_load(open("channel.yml"))
 
-print(pypodcaster.Channel(sources, options))
+print(Channel(sources, options))
 

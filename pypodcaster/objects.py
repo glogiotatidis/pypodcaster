@@ -4,14 +4,17 @@ __author__ = 'mantlepro'
 
 import glob
 from jinja2 import Environment, PackageLoader
-from pypodcaster.pypodcaster.pypodcaster import item
 import eyeD3, os, time
+from datetime import datetime
 from time import strftime, gmtime
+from email.utils import formatdate
+from dateutil import tz
+
 
 source_files = []
 
-
 class Channel:
+
     """Channel object. Sources can be a string or list of strings,
     pointing to a one or more directories or mp3 files."""
 
@@ -24,19 +27,20 @@ class Channel:
             # single file or dir
             add_files(sources)
 
-        # load templates
-        env = Environment(loader=PackageLoader('pypodcaster', 'templates'))
-        template_xml = env.get_template('template.xml')
-
-        print template_xml.render(the='variables', go='here')
 
         def items():
             "Returns all items of the channel newest-to-oldest"
             all_items = []
             for src in source_files:
-                all_items.append(item.Item(src))
+                all_items.append(Item(src, options))
                 # not tested yet all_items.sort(self, key=lambda item: item.pub_date)
+            return all_items
 
+        # load templates
+        env = Environment(loader=PackageLoader('pypodcaster', 'templates'))
+        template_xml = env.get_template('template.xml')
+
+        print template_xml.render(channel=options, items=items())
 
 def add_files(src):
     "add absolute paths to list"
@@ -66,8 +70,9 @@ class Item:
             self.comment = id3.getComment()
             self.artist = id3.getArtist()
             # TODO: check for mp3 date tag. If none, set to file's mtime or default in channel.yml
-            # pub_date = "Thu, " + day + now.strftime(" %b %Y 19:00:00 -0600")
-            self.pub_date = time.ctime(os.path.getmtime(file_path))
+            # date should be in RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
+            timezone=strftime('%Z')
+            self.pub_date = datetime.fromtimestamp(os.stat(file_path).st_mtime).strftime("%a, %d %b %Y %T ") + timezone
             self.length = os.stat(file_path).st_size
             # replace with id3 method?
             self.duration = strftime('%M:%S', gmtime(float(self.seconds)))

@@ -11,7 +11,7 @@ except ImportError:
                 'author_email': 'mantlepro@gmail.com',
                 'version': '0.1',
                 'install_requires': ['Jinja2','eyeD3'],
-                'packages': ['NAME'],
+                'packages': ['pypodcaster'],
                 'scripts': [],
                 'name': 'pypodcaster'
                 }

@@ -14,13 +14,13 @@ If you do not have `pip` installed on your system, pypodcaster can be installed 
   
 ## Setup
 
-Create a directory to hold your podcast media. e.g. `podcast` folder on a web server, Dropbox Public folder, (e.g. `~/Dropbox/Public`), or other public-facing html server.
+Create a directory to hold your podcast media on a public-facing html server or Dropbox Public folder (e.g. `~/Dropbox/Public`).
 
     mkdir podcast
 
 Enter channel information into `channel.yml`
 
-Note: `title`, `link`, and `description` are required fields.
+Note: `title`, `link`, and `description` are required fields. The rest are optional.
 
 ```
 title: 'Podcast Title'
@@ -40,9 +40,6 @@ explicit: No
 keywords: [comma, separated, list]
 ```
 
-- [iTunes Podcast Specs](http://www.apple.com/itunes/podcasts/specs.html)
-- [RSS 2.0 Specifications](https://validator.w3.org/feed/docs/rss2.html)
-
 ## Usage
 
 `cd` to directory containing podcast media and run
@@ -59,3 +56,9 @@ Use [Feedburner](http://feedburner.com) as a middle-man to:
 - Monitor the health of your podcast
 - Analyze, optimize, and troubleshoot
 - Seamlessly update your feed's location
+
+
+## Podcast Specifications
+
+- [iTunes Podcast Specs](http://www.apple.com/itunes/podcasts/specs.html)
+- [RSS 2.0 Specifications](https://validator.w3.org/feed/docs/rss2.html)

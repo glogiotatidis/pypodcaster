@@ -18,37 +18,40 @@
             <itunes:email>{{ channel.owner.email }}</itunes:email>
         </itunes:owner>
         <itunes:image href="{{ channel.image }}"/>
-
         <itunes:category text="Technology">
             <itunes:category text="Gadgets"/>
         </itunes:category>
         <itunes:category text="TV &amp; Film"/>
         <generator>{{ channel.generator}}</generator>
         <lastBuildDate>{{ channel.last_build_date }}</lastBuildDate>
-        {% for item in items %}
+        {% for item in items -%}
         <item>
             <title>{{ item.title|e }}</title>
             <author>{{ item.artist|e }}</author>
             <itunes:subtitle>{{ item.subtitle|e }}</itunes:subtitle>
             <itunes:summary>
-                {% if item.comment %}
+                {% if item.comment -%}
+                <p>
+                    {{ item.artist }}
+                    <br/>
+                    {{ item.album }}
+                </p>
+                <p>
+                    {{ item.comment }}
+                </p>
+                {%- else -%}
                 <p>{{ item.artist }}
                     <br/>
                     {{ item.album }}
                 </p>
-                <p>{{ item.comment }}</p>
-                {% else %}
-                {{ item.artist }}
-                <br/>
-                {{ item.album }}
-                {% endif %}
+                {%- endif %}
             </itunes:summary>
             <itunes:image href="{{ item.image }}"/>
             <enclosure url="{{ item.url }}" length="{{ item.length }}" type="audio/mpeg"/>
             <guid>{{ item.url }}</guid>
-            <pubDate>{{ item.pubdate.strftime('%s') }}</pubDate>
+            <pubDate>{{ item.pub_date }}</pubDate>
             <itunes:duration>{{ item.duration }}</itunes:duration>
         </item>
-        {% endfor %}
+        {%- endfor %}
     </channel>
 </rss>
