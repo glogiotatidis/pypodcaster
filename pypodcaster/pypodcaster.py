@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""""""
+"""Generate podcast feed"""
 
 import argparse, yaml
 from pypodcaster.objects import Channel
@@ -35,6 +35,11 @@ if args.channel:
     options = yaml.safe_load(open(args.channel))
 else:
     options = yaml.safe_load(open(os.getcwd() + "/channel.yml"))
+
+# remove trailing slash from channel.yml
+if options.get("podcast_url").endswith('/'):
+  # replace trailing slash with ''
+  options = options
 
 if args.output:
   # TODO: Add file writer
