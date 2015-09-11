@@ -33,7 +33,7 @@ class Channel:
             sorted(all_items, key=lambda item: item.options.get("pub_date"))
         return all_items
 
-    def xml(self):
+    def render_xml(self):
         env = Environment(loader=PackageLoader("pypodcaster", 'templates'))
         template_xml = env.get_template('template.xml')
         # set up template variables

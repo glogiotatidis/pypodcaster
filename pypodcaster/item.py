@@ -7,9 +7,7 @@ __author__ = 'mantlepro'
 class Item:
     """Item object containing vars related to id3 tag"""
     def __init__(self, file_path, options):
-
         self.options = options
-
         if eyeD3.isMp3File(file_path):
             mp3_file = eyeD3.Mp3AudioFile(file_path)
             id3 = mp3_file.getTag()

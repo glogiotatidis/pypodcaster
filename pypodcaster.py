@@ -56,6 +56,6 @@ options['podcast_url'] = trailing_slash(options['podcast_url'])
 #Channel(args.sources, options)
 if args.output:
     with open(args.output, 'w') as output_file:
-        output_file.write("%s\n" % Channel(args.sources, options).xml())
+        output_file.write("%s\n" % Channel(args.sources, options).render_xml())
 else:
-    print Channel(args.sources, options).xml()
+    print Channel(args.sources, options).render_xml()
