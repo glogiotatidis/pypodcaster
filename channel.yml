@@ -5,7 +5,7 @@ language: 'en-us'
 copyright: 'Copyright notice for channel content.'
 subtitle: 'Podcast Subtitle'
 podcast_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/'
-image: 'cover.jpg' # uri relates to podcast_dir (e.g. https://dl.dropboxusercontent.com/u/12345678/podcast/cover.jpg)
+image: 'cover.jpg' # full url or image under podcast_url
 author: 'Author name or Company'
 owner:
   name: 'John Doe'
