@@ -3,14 +3,6 @@
 Simple Podcast Publishing
 
 `pypodcaster` is meant to be one of the simplist podcast publishers available. It generates a standard RSS feed based on the ID3 tags of media files in a given directory. Podcast media can be served from a public-facing HTML server or hosted from the Public folder in Dropbox.
-
-## Installation (not available yet)
-
-    pip install pypodcaster
-
-If you do not have `pip` installed on your system, pypodcaster can be installed using `easy_install`.
-
-    easy_install pypodcaster
   
 ## Setup
 
@@ -27,14 +19,14 @@ title: 'Podcast Title'
 link: 'http://link-to-website-corresponding-to-the-channel.com'
 description: 'Phrase or sentence describing the channel.'
 language: 'en-us'
-copyright: 'Copyright notice for content in the channel.'
+copyright: 'Copyright notice for channel content.'
 subtitle: 'Podcast Subtitle'
 podcast_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/'
+image: 'cover.jpg' # full url or image under podcast_url
 author: 'Author name or Company'
 owner:
   name: 'John Doe'
   email: 'john@doe.com'
-image_url: 'https://dl.dropboxusercontent.com/u/12345678/podcast/cover.jpg'
 categories: ['Religion & Spirituality', 'Christianity']
 explicit: No
 keywords: [comma, separated, list]
