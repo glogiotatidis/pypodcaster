@@ -16,7 +16,7 @@ parser = argparse.ArgumentParser(
     epilog="example: %(prog)s > index.rss"
 )
 parser.add_argument("sources",
-                    nargs="?",
+                    nargs="+",
                     help="Specify source files or directories",
                     default=os.getcwd()
                     )
@@ -49,11 +49,9 @@ def trailing_slash(url):
 def validate(url):
     validators.url(url)
 
-# following line for testing only
-options = yaml.safe_load(open("/home/mantlepro/Documents/pypodcaster/channel.yml"))
+# remove trailing slashes to support either format in channel.yml
 options['podcast_url'] = trailing_slash(options['podcast_url'])
 
-#Channel(args.sources, options)
 if args.output:
     with open(args.output, 'w') as output_file:
         output_file.write("%s\n" % Channel(args.sources, options).render_xml())

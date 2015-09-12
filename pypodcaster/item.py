@@ -64,3 +64,5 @@ def get_image_url(file_path, options, title, album):
                 image_url = "%s/%s" % (options["podcast_url"],options["image"])
 
     return image_url
+
+# TODO: Find cover image in id3 tag or add it if missing

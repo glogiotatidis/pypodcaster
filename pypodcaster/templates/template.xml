@@ -18,7 +18,7 @@
             <itunes:email>{{ channel.owner.email }}</itunes:email>
         </itunes:owner>
         <itunes:keywords>{{ channel.keywords|join(', ') }}</itunes:keywords>
-        <itunes:image href="{{ channel.image_url }}" />
+        <itunes:image href="{{ channel.image }}" />
         {% for category in channel.categories -%}
         {% if loop.length > 1 -%}
         {% if loop.first -%}
@@ -42,32 +42,16 @@
             <title>{{ item.title|e }}</title>
             <itunes:author>{{ item.artist|e }}</itunes:author>
             <itunes:subtitle>{{ item.subtitle|e }}</itunes:subtitle>
+            {% if item.comment -%}
             <itunes:summary>
-                {% if item.comment -%}
-                {{ item.artist }}
-                &#xD;&#xA;
-                {{ item.album }}
-                &#xD;&#xA;
-                {{ item.comment }}
-                {%- else -%}
-                {{ item.artist }}
-                &#xD;&#xA;
-                {{ item.album }}
-                {% endif %}
-            </itunes:summary>
-            <description>
-                {% if item.comment -%}
-                {{ item.artist|e }}
-                &#xD;&#xA;
-                {{ item.album|e }}
-                &#xD;&#xA;
                 {{ item.comment|e }}
-                {%- else -%}
-                {{ item.artist|e }}
-                &#xD;&#xA;
-                {{ item.album|e }}
-                {% endif %}
+            </itunes:summary>
+            {% endif -%}
+            {% if item.comment -%}
+            <description>
+                {{ item.comment|e }}
             </description>
+            {% endif -%}
             <itunes:image href="{{ item.image_url }}" />
             <enclosure url="{{ item.url }}" length="{{ item.length }}" type="audio/mpeg" />
             <guid>{{ item.url }}</guid>
