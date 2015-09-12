@@ -35,7 +35,7 @@
         {% endif -%}
         {% endfor -%}
         <itunes:explicit>{{ channel.explicit }}</itunes:explicit>
-        <generator>{{ generator}}</generator>
+        <generator>{{ generator }}</generator>
         <lastBuildDate>{{ last_build_date }}</lastBuildDate>
         {% for item in items -%}
         <item>
@@ -69,8 +69,8 @@
                 {% endif %}
             </description>
             <itunes:image href="{{ item.image_url }}" />
-            <enclosure url="{{ item.url|urlencode }}" length="{{ item.length }}" type="audio/mpeg" />
-            <guid>{{ item.url|urlencode }}</guid>
+            <enclosure url="{{ item.url }}" length="{{ item.length }}" type="audio/mpeg" />
+            <guid>{{ item.url }}</guid>
             <pubDate>{{ item.pub_date }}</pubDate>
             <itunes:duration>{{ item.duration }}</itunes:duration>
         </item>
