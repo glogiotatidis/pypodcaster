@@ -1,9 +1,8 @@
-import os, ntpath
+import os, ntpath, logging, validators
 from time import strftime, gmtime
 from datetime import datetime as dt
 from mutagen.easyid3 import EasyID3
 from mutagen.mp3 import MP3
-import validators
 
 __author__ = 'mantlepro'
 
@@ -32,36 +31,43 @@ def get_image_url(file_path, options, title, album):
     """check for episodic image with similar name or add channel default"""
 
     files = os.listdir(os.path.dirname(file_path))
-    image_guess = os.path.splitext(os.path.basename(file_path))[0] + ".jpg"
+    mp3file = os.path.basename(file_path)
+    image_guess = os.path.splitext(mp3file)[0] + ".jpg"
+    found = False
 
     for file in files:
-        print file.lower(), image_guess.lower()
         if file.lower() == image_guess.lower():
-            print "Episodic image found using filename."
+            logging.info("Episodic image found for %s using filename." % mp3file)
             image_url = "%s/%s" % (options["podcast_url"],file)
+            found=True
             break
         elif os.path.isfile(title + ".jpg"):
-            print "Episodic image found using title tag"
+            logging.info("Episodic image found for %s using title tag" % mp3file)
             image_url = "%s/%s" % (options["podcast_url"],title + ".jpg")
+            found=True
             break
         elif os.path.isfile(title.lower() + ".jpg"):
-            print "Episodic image found using lowercase title tag"
+            logging.info("Episodic image found for %s using lowercase title tag" % mp3file)
             image_url = "%s/%s" % (options["podcast_url"],title.lower() + ".jpg")
+            found=True
             break
         elif os.path.isfile(album + ".jpg"):
-            print "Episodic image found using album tag"
+            logging.info("Episodic image found for %s using album tag" % mp3file)
             image_url = "%s/%s" % (options["podcast_url"],album + ".jpg")
+            found=True
             break
         elif os.path.isfile(album.lower() + ".jpg"):
-            print "Episodic image found using album lowercase tag"
+            logging.info("Episodic image found for %s using album lowercase tag" % mp3file)
             image_url = "%s/%s" % (options["podcast_url"],album.lower() + ".jpg")
+            found=True
             break
+
+    if not found:
+        logging.debug("No episodic image found for %s. Using channel default image." % mp3file)
+        if validators.url(options["image"]):
+            image_url = options["image"]
         else:
-            print "No episodic image found. Using channel default image."
-            if validators.url(options["image"]):
-                image_url = options["image"]
-            else:
-                image_url = "%s/%s" % (options["podcast_url"],options["image"])
+            image_url = "%s/%s" % (options["podcast_url"],options["image"])
 
     return image_url
 
