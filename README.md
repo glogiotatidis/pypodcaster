@@ -40,6 +40,20 @@ keywords: [comma, separated, list]
 
 `pypodcaster` will create `podcast.xml` with settings from `channel.yml`. Run the command every time you wish to update the podcast feed.
 
+## Advanced
+
+### Episodic Images
+
+Episodic images are supported by placing a jpg image with the same filename or album name alongside the mp3 file before running pypodcaster. If album name is used, an image can carry across an entire series without the need to have one image per mp3 episode.
+
+#### Example
+
+```
+Dropbox/Public/podcast
+  01 Podcast.mp3
+  01 Podcast.jpg
+```
+
 ## Notes
 
 Use [Feedburner](http://feedburner.com) as a middle-man to:
