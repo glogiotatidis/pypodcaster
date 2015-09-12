@@ -57,7 +57,7 @@ Contents of Dropbox/Public/podcast:
   series01.mp3
   series02.mp3
   series03.mp3
-  Series Name.jpg # from id3's album tag 
+  Series Name.jpg # from id3's album tag. "series name.jpg" would also work 
 ```
 
 ## Notes
