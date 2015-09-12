@@ -44,14 +44,20 @@ keywords: [comma, separated, list]
 
 ### Episodic Images
 
-Episodic images are supported by placing a jpg image with the same filename or album name alongside the mp3 file before running pypodcaster. If album name is used, an image can carry across an entire series without the need to have one image per mp3 episode.
+Episodic images are supported by placing a jpg image with the same filename, title tag, or album name alongside the mp3 file.
+
+If album name is used, an image can carry across an entire series without the need to have one image per mp3 episode. If no jpg is provided, the episode defaults to the channel's cover image.
 
 #### Example
 
 ```
-Dropbox/Public/podcast
-  01 Podcast.mp3
-  01 Podcast.jpg
+Contents of Dropbox/Public/podcast:
+  First Podcast.mp3
+  First Podcast.jpg # lower case "first podcast.jpg" would also work
+  series01.mp3
+  series02.mp3
+  series03.mp3
+  Series Name.jpg # from id3's album tag 
 ```
 
 ## Notes
