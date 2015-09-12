@@ -19,7 +19,6 @@ class Channel:
         self.options = options
 
         for source in sources:
-            logging.debug("Adding %s to source_files" % source)
             add_files(source)
 
     def items(self, options):
@@ -46,8 +45,8 @@ def add_files(source):
     if os.path.isdir(source):
         os.chdir(source)
         for file in glob.glob("*.mp3"):
-            logging.debug("Appending %s/%s to source_files" % (os.getcwd(), file))
             source_files.append("%s/%s" % (os.getcwd(), file))
+            logging.debug("Adding %s/%s to source_files" % (os.getcwd(), file))
     else:
-        logging.debug("Appending %s to source_files" % (source))
         source_files.append(source)
+        logging.debug("Adding %s to source_files" % source)
