@@ -1,3 +1,4 @@
+import logging
 import validators
 from pypodcaster.item import Item
 
@@ -17,23 +18,21 @@ class Channel:
         self.sources = sources
         self.options = options
 
-        # if list
-        if isinstance(sources, list):
-            for s in sources:
-                add_files(s)
-        else:
-            # single file or dir
-            add_files(sources)
+        for source in sources:
+            logging.debug("Adding %s to source_files" % source)
+            add_files(source)
 
     def items(self, options):
         """Return all items of the channel newest-to-oldest"""
         all_items = []
         for src in source_files:
             all_items.append(Item(src, options))
-            sorted(all_items, key=lambda item: item.pub_date)
+        logging.debug("Sorting all_items from newest-to-oldest")
+        sorted(all_items, key=lambda item: item.pub_date)
         return all_items
 
     def render_xml(self):
+        """render xml template with items"""
         env = Environment(loader=PackageLoader("pypodcaster", 'templates'))
         template_xml = env.get_template('template.xml')
         # set up template variables
@@ -42,11 +41,13 @@ class Channel:
                                   last_build_date=strftime("%a, %d %b %Y %T %Z"),
                                   generator="pypodcaster"
                                   )
-def add_files(src):
+def add_files(source):
     """add absolute paths to source_files"""
-    if os.path.isdir(src):
-        os.chdir(src)
+    if os.path.isdir(source):
+        os.chdir(source)
         for file in glob.glob("*.mp3"):
+            logging.debug("Appending %s/%s to source_files" % (os.getcwd(), file))
             source_files.append("%s/%s" % (os.getcwd(), file))
     else:
-        source_files.append(src)
+        logging.debug("Appending %s to source_files" % (source))
+        source_files.append(source)
