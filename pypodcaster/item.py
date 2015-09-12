@@ -13,25 +13,20 @@ class Item:
 
         if file_path.endswith('.mp3'):
             id3 = EasyID3(file_path)
-            mp3_file = MP3(file_path)
-            self.title = id3['title']
-            self.album = id3['album']
-            self.comment = id3
-            self.artist = id3['artist']
+            audio = MP3(file_path)
+            self.title = ''.join(id3['title'])
+            self.album= ''.join(id3['album'])
+            # TODO: add ability for user to add description through id3 tag or otherwise
+            self.comment = ""
+            self.artist = ''.join(id3['artist'])
             self.subtitle = options.get("subtitle")
             self.url = "%s/%s" % (options.get("podcast_url"),ntpath.basename(file_path))
             # date should be in RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
             self.pub_date = dt.fromtimestamp(os.stat(file_path).st_mtime).strftime("%a, %d %b %Y %T ") + strftime('%Z')
             self.length = os.stat(file_path).st_size
+            self.seconds = audio.info.length
             self.duration = strftime('%M:%S', gmtime(float(self.seconds)))
             self.image_url = get_image_url(file_path, options, self.title, self.album)
-            self.subtitle = options.get("subtitle")
-            self.url = "%s/%s" % (options.get("podcast_url"),ntpath.basename(file_path))
-            # date should be in RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
-            self.pub_date = dt.fromtimestamp(os.stat(file_path).st_mtime).strftime("%a, %d %b %Y %T ") + strftime('%Z')
-            self.length = os.stat(file_path).st_size
-            self.seconds = mp3_file.info.length
-            self.duration = strftime('%M:%S', gmtime(float(self.seconds)))
 
 def get_image_url(file_path, options, title, album):
     """check for episodic image with similar name or add channel default"""
@@ -40,6 +35,7 @@ def get_image_url(file_path, options, title, album):
     image_guess = os.path.splitext(os.path.basename(file_path))[0] + ".jpg"
 
     for file in files:
+        print file.lower(), image_guess.lower()
         if file.lower() == image_guess.lower():
             print "Episodic image found using filename."
             image_url = "%s/%s" % (options["podcast_url"],file)
@@ -48,9 +44,17 @@ def get_image_url(file_path, options, title, album):
             print "Episodic image found using title tag"
             image_url = "%s/%s" % (options["podcast_url"],title + ".jpg")
             break
+        elif os.path.isfile(title.lower() + ".jpg"):
+            print "Episodic image found using lowercase title tag"
+            image_url = "%s/%s" % (options["podcast_url"],title.lower() + ".jpg")
+            break
         elif os.path.isfile(album + ".jpg"):
             print "Episodic image found using album tag"
-            image_url = "%s/%s" % (options["podcast_url"],title + ".jpg")
+            image_url = "%s/%s" % (options["podcast_url"],album + ".jpg")
+            break
+        elif os.path.isfile(album.lower() + ".jpg"):
+            print "Episodic image found using album lowercase tag"
+            image_url = "%s/%s" % (options["podcast_url"],album.lower() + ".jpg")
             break
         else:
             print "No episodic image found. Using channel default image."
@@ -58,6 +62,5 @@ def get_image_url(file_path, options, title, album):
                 image_url = options["image"]
             else:
                 image_url = "%s/%s" % (options["podcast_url"],options["image"])
-            break
 
     return image_url
