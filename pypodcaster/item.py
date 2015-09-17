@@ -22,6 +22,7 @@ class Item:
             self.url = "%s/%s" % (options.get("podcast_url"),ntpath.basename(file_path))
             # date should be in RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
             self.pub_date = dt.fromtimestamp(os.stat(file_path).st_mtime).strftime("%a, %d %b %Y %T ") + strftime('%Z')
+            #TODO: Extract pub_date from filename containing YYYYMMDD or YYYY-MM-DD or use file modified time as a fallback.
             self.length = os.stat(file_path).st_size
             self.seconds = audio.info.length
             self.duration = strftime('%M:%S', gmtime(float(self.seconds)))
@@ -72,3 +73,36 @@ def get_image_url(file_path, options, title, album):
     return image_url
 
 # TODO: Find cover image in id3 tag or add it if missing
+# from mutagen.mp3 import MP3
+# from mutagen.id3 import ID3, APIC, error
+#
+# audio = MP3('example.mp3', ID3=ID3)
+#
+# # add ID3 tag if it doesn't exist
+# try:
+#     audio.add_tags()
+# except error:
+#     pass
+#
+# audio.tags.add(
+#     APIC(
+#         encoding=3, # 3 is for utf-8
+#         mime='image/png', # image/jpeg or image/png
+#         type=3, # 3 is for the cover image
+#         desc=u'Cover',
+#         data=open('example.png').read()
+#     )
+# )
+# audio.save()
+
+# TODO: Detect existing picture
+# def pict_test(audio):
+#     try:
+#         x = audio.pictures
+#         if x:
+#             return True
+#     except Exception:
+#         pass
+#     if 'covr' in audio or 'APIC:' in audio:
+#         return True
+#     return False
