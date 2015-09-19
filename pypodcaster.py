@@ -13,6 +13,8 @@ __author__ = 'mantlepro'
 global VERSION
 VERSION = "0.5.1"
 
+sources_list = [os.getcwd()]
+
 logging.basicConfig(filename='podcast.log',format='%(levelname)s: %(message)s', filemode="w", level=logging.DEBUG)
 logging.info("Started %s" % time.strftime("%a, %d %b %Y %T %Z"))
 parser = argparse.ArgumentParser(
@@ -21,9 +23,9 @@ parser = argparse.ArgumentParser(
 )
 # TODO: log levels from commandline
 parser.add_argument("sources",
-                    nargs="+",
+                    nargs="*",
                     help="Specify source files or directories",
-                    default=os.getcwd()
+                    default=sources_list
                     )
 parser.add_argument("-c", "--channel", metavar="/path/to/channel.yml", help="Specify channel definition instead of current directory's channel.yml")
 parser.add_argument("-o", "--output", help="Direct output to FILE instead of stdout")
@@ -32,6 +34,11 @@ parser.add_argument('-V', "--version",
                     version="%(prog)s " + VERSION,
                     )
 args = parser.parse_args()
+
+if not args.sources == sources_list:
+    sources_list = args.sources
+
+logging.debug("Sources: " + str(sources_list))
 
 # TODO: Validate channel file.
 # TODO: Is link url valid?
@@ -59,8 +66,8 @@ options['podcast_url'] = trailing_slash(options['podcast_url'])
 
 if args.output:
     with open(args.output, 'w') as output_file:
-        output_file.write("%s\n" % Channel(args.sources, options).render_xml())
+        output_file.write("%s\n" % Channel(sources_list, options).render_xml())
 else:
-    print Channel(args.sources, options).render_xml()
+    print Channel(sources_list, options).render_xml()
 
 logging.info("Finished %s" % time.strftime("%a, %d %b %Y %T %Z"))

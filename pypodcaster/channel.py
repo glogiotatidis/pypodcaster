@@ -43,6 +43,7 @@ class Channel:
 def add_files(source):
     """add absolute paths to source_files"""
     if os.path.isdir(source):
+        logging.debug(source + " is directory")
         os.chdir(source)
         for file in glob.glob("*.mp3"):
             source_files.append("%s/%s" % (os.getcwd(), file))
