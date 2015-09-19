@@ -1,6 +1,5 @@
-import os, ntpath, logging, validators
-from time import strftime, gmtime
-from datetime import datetime as dt
+import os, ntpath, logging, validators, re, time
+from datetime import datetime
 from mutagen.easyid3 import EasyID3
 from mutagen.mp3 import MP3
 
@@ -20,12 +19,10 @@ class Item:
             self.artist = ''.join(id3['artist'])
             self.subtitle = options.get("subtitle")
             self.url = "%s/%s" % (options.get("podcast_url"),ntpath.basename(file_path))
-            # date should be in RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
-            self.pub_date = dt.fromtimestamp(os.stat(file_path).st_mtime).strftime("%a, %d %b %Y %T ") + strftime('%Z')
-            #TODO: Extract pub_date from filename containing YYYYMMDD or YYYY-MM-DD or use file modified time as a fallback.
+            self.pub_date = get_pub_date(file_path)
             self.length = os.stat(file_path).st_size
             self.seconds = audio.info.length
-            self.duration = strftime('%M:%S', gmtime(float(self.seconds)))
+            self.duration = time.strftime('%M:%S', time.gmtime(float(self.seconds)))
             self.image_url = get_image_url(file_path, options, self.title, self.album)
 
 def get_image_url(file_path, options, title, album):
@@ -71,6 +68,30 @@ def get_image_url(file_path, options, title, album):
             image_url = "%s/%s" % (options["podcast_url"],options["image"])
 
     return image_url
+
+def get_pub_date(filename):
+    """Extract pub_date from filename containing YYYY-MM-DD
+    or else use file's modified time as a fallback."""
+
+    date = datetime.fromtimestamp(os.stat(filename).st_mtime)
+
+    dashless_date = re.search(r'(\d{4}\d{2}\d{2})', filename)
+    dashed_date = re.search(r'(\d{4}\-\d{2}\-\d{2})', filename)
+
+    try:
+        if dashless_date:
+            date = datetime.strptime(dashless_date.group(0), "%Y%m%d")
+        elif dashed_date:
+            date = datetime.strptime(dashed_date.group(0), "%Y-%m-%d")
+
+    except ValueError as err:
+        logging.error("Filename contains incorrect date: " + filename + " " + str(err))
+        logging.info("Using file's mtime for " + filename)
+
+    # date must be in RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
+    date = date.strftime("%a, %d %b %Y %T ") + time.strftime('%Z')
+
+    return date
 
 # TODO: Find cover image in id3 tag or add it if missing
 # from mutagen.mp3 import MP3
