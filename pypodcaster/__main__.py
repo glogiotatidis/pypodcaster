@@ -7,14 +7,13 @@ import os
 import logging
 import time
 from pypodcaster.channel import Channel
-
+from pkg_resources import get_distribution
 import yaml
 import validators
 
 __author__ = 'mantlepro'
 
-global VERSION
-VERSION = "0.5.1"
+VERSION = get_distribution('pypodcaster').version
 
 def main():
     sources_list = [os.getcwd()]
@@ -35,7 +34,7 @@ def main():
     parser.add_argument("-o", "--output", help="Direct output to FILE instead of stdout")
     parser.add_argument('-V', "--version",
                         action="version",
-                        version="%(prog)s " + VERSION,
+                        version=VERSION,
                         )
     args = parser.parse_args()
 
@@ -53,8 +52,10 @@ def main():
     elif os.path.isfile(os.getcwd() + "/channel.yml"):
         options = yaml.safe_load(open(os.getcwd() + "/channel.yml"))
     else:
+        options=""
         parser.print_help()
         print "No channel.yml found"
+        exit(1)
 
     def trailing_slash(url):
         """remove trailing slash from url"""
