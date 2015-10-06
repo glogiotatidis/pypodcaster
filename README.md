@@ -6,7 +6,7 @@ Simple Podcast Publishing
 
 ## Install
 
-    sudo setup.py install
+    sudo python setup.py install
 
 ## Setup
 
