@@ -2,7 +2,7 @@
 
 Simple Podcast Publishing
 
-`pypodcaster` is meant to be one of the simplest podcast publishers available. It generates a standard RSS feed based on the ID3 tags of media files in a given directory. Podcast media can be served from a public-facing HTML server or hosted from the Public folder in Dropbox.
+`pypodcaster` is an easy to use podcast feed generator that takes media files in a directory and generates a standard RSS feed. The podcast can then be served from a public-facing HTML server or hosted from the Public folder in Dropbox, for instance.
 
 ## Install
 
@@ -16,7 +16,7 @@ Create a directory to hold your podcast media on a public-facing html server or 
 
 Enter channel information into `channel.yml`
 
-Note: `title`, `link`, and `description` are required fields. The rest are optional.
+Note: `title`, `link`, `description`, and `podcast_url` are required fields. The rest are optional.
 
 ```
 title: 'Podcast Title'
@@ -50,7 +50,7 @@ keywords: [comma, separated, list]
 
 Episodic images are supported by placing a jpg image with the same filename, title tag, or album name alongside the mp3 file.
 
-If album name is used, an image can carry across an entire series without the need to have one image per mp3 episode. If no jpg is provided, the episode defaults to the channel's cover image.
+If album name is used, the image will carry across an entire series. If no jpg is provided, the cover image will default to the channel's cover image set in `channel.yml`.
 
 #### Example
 
