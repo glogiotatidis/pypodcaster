@@ -4,6 +4,7 @@ requirements = [
     'Jinja2',
     'mutagen',
     'pyyaml',
+    'validators',
 ],
 
 setup(
