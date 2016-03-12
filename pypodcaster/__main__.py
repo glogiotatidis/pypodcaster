@@ -71,9 +71,9 @@ def main():
 
     if args.output:
         with open(args.output, 'w') as output_file:
-            output_file.write("%s\n" % Channel(sources_list, options).render_xml())
+            output_file.write("%s\n" % Channel(sources_list, options).render_xml().encode('ascii', 'xmlcharrefreplace'))
     else:
-        print Channel(sources_list, options).render_xml()
+        print Channel(sources_list, options).render_xml().encode('ascii', 'xmlcharrefreplace')
 
     logging.info("Finished %s" % time.strftime("%a, %d %b %Y %T %Z"))
 
