@@ -1,8 +1,15 @@
 from setuptools import setup, find_packages
 
+requirements = [
+    'Jinja2',
+    'mutagen',
+    'pyyaml',
+],
+
 setup(
     name='pypodcaster',
     version='0.7',
+    install_requires=requirements,
     packages=find_packages(),
     url='http://github.com/mantlepro/pypodcaster',
     license='MIT',
