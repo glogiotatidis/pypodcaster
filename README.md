@@ -6,15 +6,15 @@ Simple Podcast Publishing
 
 ## Install
 
-### If you have `git` installed
+If you have `git` installed
 
     git clone https://github.com/mantlepro/pypodcaster.git
     cd pypodcaster
     sudo python setup.py install
 
-### If you do not have `git` installed
+If you do not have `git` installed
 
-Download the zip: https://github.com/mantlepro/pypodcaster/archive/master.zip
+Download the zip here: https://github.com/mantlepro/pypodcaster/archive/master.zip
 
     unzip pypodcaster-master.zip
     cd pypodcaster-master.zip
