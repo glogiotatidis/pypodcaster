@@ -2,10 +2,22 @@
 
 Simple Podcast Publishing
 
-`pypodcaster` is an easy to use podcast feed generator that takes media files in a directory and generates a standard RSS feed. The podcast can then be served from a public-facing HTML server or hosted from the Public folder in Dropbox, for instance.
+`pypodcaster` is a simple podcast feed generator that generates a standard, iTunes-friendly podcast feed from media files in a directory. The podcast can be hosted from the Public folder in Dropbox or public-facing HTML server.
 
 ## Install
 
+### If you have `git` installed
+
+    git clone https://github.com/mantlepro/pypodcaster.git
+    cd pypodcaster
+    sudo python setup.py install
+
+### If you do not have `git` installed
+
+Download the zip: https://github.com/mantlepro/pypodcaster/archive/master.zip
+
+    unzip pypodcaster-master.zip
+    cd pypodcaster-master.zip
     sudo python setup.py install
 
 ## Setup
@@ -16,7 +28,7 @@ Create a directory to hold your podcast media on a public-facing html server or 
 
 Enter channel information into `channel.yml`
 
-Note: `title`, `link`, `description`, and `podcast_url` are required fields. The rest are optional.
+Note: `title`, `link`, `description`, and `podcast_url` are required fields. The rest are optional but recommended.
 
 ```
 title: 'Podcast Title'
@@ -48,7 +60,7 @@ keywords: [comma, separated, list]
 
 ### Episodic Images
 
-Episodic images are supported by placing a jpg image with the same filename, title tag, or album name alongside the mp3 file.
+Episodic images are supported by placing a jpg image with the same filename, title or album tag alongside the mp3 file.
 
 If album name is used, the image will carry across an entire series. If no jpg is provided, the cover image will default to the channel's cover image set in `channel.yml`.
 
@@ -63,6 +75,10 @@ Contents of Dropbox/Public/podcast:
   series03.mp3
   Series Name.jpg # from id3's album tag. 
 ```
+
+### Customize XML Template
+
+`pypodcaster` uses [Jinja2](http://jinja.pocoo.org/) for beautiful xml templating. If you wish to edit the feed's format beyond `pypodcaster`'s basic template, edit `template.xml` under the `pypodcaster/templates/` directory.
 
 ## Notes
 
