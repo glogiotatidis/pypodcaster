@@ -27,7 +27,7 @@ class Channel:
         for src in source_files:
             all_items.append(Item(src, options))
         logging.debug("Sorting all_items from newest-to-oldest")
-        sorted(all_items, key=lambda item: item.pub_date)
+        all_items=sorted(all_items, key=lambda item: item.sort_date)
         return all_items
 
     def render_xml(self):
