@@ -7,19 +7,21 @@ __author__ = 'mantlepro'
 
 class Item:
     """Item object containing vars related to id3 tag"""
-    def __init__(self, file_path, options):
 
+    def __init__(self, file_path, options):
         if file_path.endswith('.mp3'):
             id3 = EasyID3(file_path)
             audio = MP3(file_path)
             self.title = ''.join(id3['title'])
-            self.album= ''.join(id3['album'])
+            self.album = ''.join(id3['album'])
             # TODO: add ability for user to add description through id3 tag or otherwise
             self.comment = ""
             self.artist = ''.join(id3['artist'])
             self.subtitle = options.get("subtitle")
-            self.url = "%s/%s" % (options.get("podcast_url"),ntpath.basename(file_path))
-            self.pub_date = get_pub_date(file_path)
+            self.url = "%s/%s" % (options.get("podcast_url"), ntpath.basename(file_path))
+            self.sort_date = get_date(file_path)
+            # set pub_date to RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
+            self.pub_date = self.sort_date.strftime("%a, %d %b %Y %T ") + time.strftime('%Z')
             self.length = os.stat(file_path).st_size
             self.seconds = audio.info.length
             self.duration = time.strftime('%M:%S', time.gmtime(float(self.seconds)))
@@ -36,28 +38,28 @@ def get_image_url(file_path, options, title, album):
     for file in files:
         if file.lower() == image_guess.lower():
             logging.info("Episodic image found for %s using filename." % mp3file)
-            image_url = "%s/%s" % (options["podcast_url"],file)
-            found=True
+            image_url = "%s/%s" % (options["podcast_url"], file)
+            found = True
             break
         elif os.path.isfile(title + ".jpg"):
             logging.info("Episodic image found for %s using title tag" % mp3file)
-            image_url = "%s/%s" % (options["podcast_url"],title + ".jpg")
-            found=True
+            image_url = "%s/%s" % (options["podcast_url"], title + ".jpg")
+            found = True
             break
         elif os.path.isfile(title.lower() + ".jpg"):
             logging.info("Episodic image found for %s using lowercase title tag" % mp3file)
-            image_url = "%s/%s" % (options["podcast_url"],title.lower() + ".jpg")
-            found=True
+            image_url = "%s/%s" % (options["podcast_url"], title.lower() + ".jpg")
+            found = True
             break
         elif os.path.isfile(album + ".jpg"):
             logging.info("Episodic image found for %s using album tag" % mp3file)
-            image_url = "%s/%s" % (options["podcast_url"],album + ".jpg")
-            found=True
+            image_url = "%s/%s" % (options["podcast_url"], album + ".jpg")
+            found = True
             break
         elif os.path.isfile(album.lower() + ".jpg"):
             logging.info("Episodic image found for %s using album lowercase tag" % mp3file)
-            image_url = "%s/%s" % (options["podcast_url"],album.lower() + ".jpg")
-            found=True
+            image_url = "%s/%s" % (options["podcast_url"], album.lower() + ".jpg")
+            found = True
             break
 
     if not found:
@@ -65,11 +67,11 @@ def get_image_url(file_path, options, title, album):
         if validators.url(options["image"]):
             image_url = options["image"]
         else:
-            image_url = "%s/%s" % (options["podcast_url"],options["image"])
+            image_url = "%s/%s" % (options["podcast_url"], options["image"])
 
     return image_url
 
-def get_pub_date(filename):
+def get_date(filename):
     """Extract pub_date from filename containing YYYY-MM-DD
     or else use file's modified time as a fallback."""
 
@@ -87,9 +89,6 @@ def get_pub_date(filename):
     except ValueError as err:
         logging.error("Filename contains incorrect date: " + filename + " " + str(err))
         logging.info("Using file's mtime for " + filename)
-
-    # date must be in RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
-    date = date.strftime("%a, %d %b %Y %T ") + time.strftime('%Z')
 
     return date
 
