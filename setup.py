@@ -9,7 +9,7 @@ requirements = [
 
 setup(
     name='pypodcaster',
-    version='0.7',
+    version='0.8',
     install_requires=requirements,
     packages=find_packages(),
     url='http://github.com/mantlepro/pypodcaster',
