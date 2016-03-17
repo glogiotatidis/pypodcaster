@@ -27,7 +27,7 @@ class Channel:
         for src in source_files:
             all_items.append(Item(src, options))
         logging.debug("Sorting all_items from newest-to-oldest")
-        all_items=sorted(all_items, key=lambda item: item.sort_date)
+        all_items = sorted(all_items, key=lambda item: item.sort_date, reverse=True)
         return all_items
 
     def render_xml(self):
@@ -36,10 +36,11 @@ class Channel:
         template_xml = env.get_template('template.xml')
         # set up template variables
         return template_xml.render(channel=self.options,
-                                  items=self.items(self.options),
-                                  last_build_date=strftime("%a, %d %b %Y %T %Z"),
-                                  generator="pypodcaster"
-                                  )
+            items=self.items(self.options),
+            last_build_date=strftime("%a, %d %b %Y %T %Z"),
+            generator="pypodcaster"
+        )
+
 def add_files(source):
     """add absolute paths to source_files"""
     if os.path.isdir(source):
