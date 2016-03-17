@@ -56,6 +56,31 @@ keywords: [comma, separated, list]
 
 `pypodcaster` will create `podcast.xml` with settings from `channel.yml`. Run the command every time you wish to update the podcast feed.
 
+To see everything `pypodcaster` is capable of, run `pypodcaster --help`
+
+```
+$ pypodcaster --help
+usage: pypodcaster [-h] [-c /path/to/channel.yml] [-o OUTPUT] [-V]
+                   [sources [sources ...]]
+
+pypodcaster - free, open source podcast rss generator by Josh Wheeler
+<mantlepro@gmail.com>
+
+positional arguments:
+  sources               Specify source files or directories
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -c /path/to/channel.yml, --channel /path/to/channel.yml
+                        Specify channel definition instead of current
+                        directory's channel.yml
+  -o OUTPUT, --output OUTPUT
+                        Direct output to FILE instead of stdout
+  -V, --version         show program's version number and exit
+
+example: pypodcaster > index.rss
+```
+
 ## Advanced
 
 ### Episodic Images
