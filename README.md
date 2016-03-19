@@ -112,7 +112,7 @@ Contents of Dropbox/Public/podcast:
 
 ### Customize XML Template
 
-`pypodcaster` uses [Jinja2](http://jinja.pocoo.org/) for beautiful xml templating. If you wish to edit the feed's format beyond `pypodcaster`'s basic template, edit `template.xml` under the `pypodcaster/templates/` directory.
+`pypodcaster` uses [Jinja2](http://jinja.pocoo.org/) for beautiful xml templating. If you wish to edit the feed's format beyond `pypodcaster`'s basic template, add `template.xml` based on [template.xml](https://github.com/mantlepro/pypodcaster/blob/master/pypodcaster/templates/template.xml) 
 
 ## Notes
 
