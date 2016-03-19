@@ -1,12 +1,11 @@
 import logging
-import validators
+
 from pypodcaster.item import Item
 
 __author__ = 'mantlepro'
 
-import os, glob
+import os, glob, jinja2
 from time import strftime
-from jinja2 import Environment, PackageLoader
 
 source_files = []
 
@@ -32,7 +31,17 @@ class Channel:
 
     def render_xml(self):
         """render xml template with items"""
-        env = Environment(loader=PackageLoader("pypodcaster", 'templates'))
+        if os.path.isfile(os.getcwd() + "/template.xml"):
+            loader = jinja2.FileSystemLoader(os.getcwd())
+            logging.debug("Using template from: " + os.getcwd())
+        elif os.path.isfile(self.sources[0] + "/template.xml"):
+            loader = jinja2.FileSystemLoader(self.sources[0])
+            logging.debug("Using template from: " + self.sources[0])
+        else:
+            # fallback to built-in template in case no template is present
+            loader = jinja2.PackageLoader("pypodcaster", 'templates')
+            logging.debug("Using default template")
+        env = jinja2.Environment(loader=loader)
         template_xml = env.get_template('template.xml')
         # set up template variables
         return template_xml.render(channel=self.options,

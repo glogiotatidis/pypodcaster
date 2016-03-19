@@ -1,5 +1,11 @@
-import os, ntpath, logging, validators, re, time
+import logging
+import ntpath
+import os
+import re
+import time
 from datetime import datetime
+
+import validators
 from mutagen.easyid3 import EasyID3
 from mutagen.mp3 import MP3
 
