@@ -2,7 +2,7 @@
 
 Simple Podcast Publishing
 
-`pypodcaster` is a simple podcast feed generator that generates a standard, iTunes-friendly podcast feed from media files in a directory. The podcast can be hosted from the Public folder in Dropbox or public-facing HTML server.
+pypodcaster is a simple podcast feed generator that generates a standard, iTunes-friendly podcast feed from media files in a directory. The podcast can be hosted from the Public folder in Dropbox or public-facing HTML server.
 
 ## Install
 
@@ -54,9 +54,9 @@ keywords: [comma, separated, list]
 
     pypodcaster > podcast.xml
 
-`pypodcaster` will create `podcast.xml` with settings from `channel.yml`. Run the command every time you wish to update the podcast feed.
+pypodcaster will create `podcast.xml` with settings from `channel.yml`. Run the command every time you wish to update the podcast feed.
 
-To see everything `pypodcaster` is capable of, run `pypodcaster --help`
+To see everything pypodcaster is capable of, run `pypodcaster --help`
 
 ```
 $ pypodcaster --help
@@ -94,7 +94,7 @@ By default, the podcast feed is sorted by file modification time. If you wish to
 
 ### Episodic Images
 
-Episodic images are supported by placing a jpg image with the same filename, title or album tag alongside the mp3 file.
+To add an image to the episode or series, add a jpg with the same filename, title or album tag alongside the mp3 file.
 
 If album name is used, the image will carry across an entire series. If no jpg is provided, the cover image will default to the channel's cover image set in `channel.yml`.
 
@@ -112,7 +112,7 @@ Contents of Dropbox/Public/podcast:
 
 ### Customize XML Template
 
-`pypodcaster` uses [Jinja2](http://jinja.pocoo.org/) for beautiful xml templating. If you wish to edit the feed's format beyond `pypodcaster`'s basic template, add `template.xml` based on [template.xml](https://github.com/mantlepro/pypodcaster/blob/master/pypodcaster/templates/template.xml) 
+pypodcaster uses [Jinja2](http://jinja.pocoo.org/) for beautiful xml templating. If you wish to edit the feed's format beyond pypodcaster's basic template, add `template.xml` to your podcast directory with contents based on [template.xml](https://github.com/mantlepro/pypodcaster/blob/master/pypodcaster/templates/template.xml) 
 
 ## Notes
 
