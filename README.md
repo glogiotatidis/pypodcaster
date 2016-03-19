@@ -85,9 +85,12 @@ example: pypodcaster > index.rss
 
 ### Sorting by Date
 
-Podcast feed is sorted automatically by file modification time. If you wish to modify the pubdate, include the date first in the episode's filename in `YYYY-MM-DD` or `YYYYMMDD` format:
+By default, the podcast feed is sorted by file modification time. If you wish to modify the date of a podcast episode, prepend the date to the episode's filename in the following format: `YYYY-MM-DD` or `YYYYMMDD`.
+
+#### Example
 
     2016-03-17 Episode Title.mp3
+    20160317 Episode Title.mp3
 
 ### Episodic Images
 
