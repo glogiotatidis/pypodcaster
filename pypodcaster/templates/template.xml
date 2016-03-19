@@ -39,7 +39,7 @@
         <lastBuildDate>{{ last_build_date }}</lastBuildDate>
         {% for item in items -%}
         <item>
-            <title>{{ item.title|e }}</title>
+            <title>{{ item.album|e }} | {{ item.title|e }}</title>
             <itunes:author>{{ item.artist|e }}</itunes:author>
             <itunes:subtitle>{{ item.subtitle|e }}</itunes:subtitle>
             {% if item.comment -%}
