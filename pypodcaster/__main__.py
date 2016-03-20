@@ -15,6 +15,9 @@ from pypodcaster.channel import Channel
 
 __author__ = 'mantlepro'
 
+def get_version():
+    return
+
 VERSION = get_distribution('pypodcaster').version
 
 def main():
@@ -67,11 +70,12 @@ def main():
     # TODO: Is link url valid?
     # TODO: Does channel's cover image exist?
 
-    def validate(url):
-        validators.url(url)
-
     # remove trailing slashes to support either format in channel.yml
     options['podcast_url'] = trailing_slash(options['podcast_url'])
+
+    # determine whether cover image is a url
+    if not validators.url(options["image"]):
+        options['image'] = "%s/%s" % (options["podcast_url"], options["image"])
 
     if args.output:
         with open(args.output, 'w') as output_file:

@@ -1,5 +1,7 @@
 import logging
 
+from pkg_resources import get_distribution
+
 from pypodcaster.item import Item
 
 __author__ = 'mantlepro'
@@ -47,7 +49,7 @@ class Channel:
         return template_xml.render(channel=self.options,
             items=self.items(self.options),
             last_build_date=strftime("%a, %d %b %Y %T %Z"),
-            generator="pypodcaster"
+            generator="pypodcaster " + get_distribution('pypodcaster').version
         )
 
 def add_files(source):
