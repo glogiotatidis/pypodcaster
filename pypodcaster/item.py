@@ -70,10 +70,7 @@ def get_image_url(file_path, options, title, album):
 
     if not found:
         logging.debug("No episodic image found for %s. Using channel default image." % mp3file)
-        if validators.url(options["image"]):
-            image_url = options["image"]
-        else:
-            image_url = "%s/%s" % (options["podcast_url"], options["image"])
+        image_url = options["image"]
 
     return image_url
 
