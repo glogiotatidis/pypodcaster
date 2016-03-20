@@ -2,7 +2,9 @@
 
 Simple Podcast Publishing
 
-pypodcaster is a simple podcast feed generator that generates a standard, iTunes-friendly podcast feed from media files in a directory. The podcast can be hosted from the Public folder in Dropbox or public-facing HTML server.
+pypodcaster generates a standard (iTunes-compatible) podcast feed from media files in a directory.
+
+Use a Dropbox Public folder or any other public-facing html server to host your podcast.
 
 ## Install
 
@@ -22,7 +24,7 @@ Download the zip here: https://github.com/mantlepro/pypodcaster/archive/master.z
 
 ## Setup
 
-Create a directory to hold your podcast media on a public-facing html server or Dropbox Public folder (e.g. `~/Dropbox/Public`).
+Create a directory to hold your podcast media (e.g. `~/Dropbox/Public`).
 
     mkdir podcast
 
@@ -47,6 +49,10 @@ categories: ['Religion & Spirituality', 'Christianity']
 explicit: No
 keywords: [comma, separated, list]
 ```
+
+#### Dropbox URL
+
+To find your Dropbox url, right-click any file inside your Dropbox/Public/podcast directory and select Dropbox > Copy Public Link. `Replace 12345678` in the example above with your actual Dropbox id.
 
 ## Usage
 
