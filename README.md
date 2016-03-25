@@ -2,9 +2,7 @@
 
 Simple Podcast Publishing
 
-pypodcaster generates a standard (iTunes-compatible) podcast feed from media files in a directory.
-
-Use a Dropbox Public folder or any other public-facing html server to host your podcast.
+pypodcaster generates a standard iTunes-compatible podcast feed from media files in a directory. Use a Dropbox Public folder or any other public-facing html server to host your podcast.
 
 ## Install
 
@@ -16,10 +14,10 @@ If you have `git` installed
 
 If you do not have `git` installed
 
-Download the zip here: https://github.com/mantlepro/pypodcaster/archive/master.zip
+Download the zip: https://github.com/mantlepro/pypodcaster/archive/master.zip
 
     unzip pypodcaster-master.zip
-    cd pypodcaster-master.zip
+    cd pypodcaster-master
     sudo python setup.py install
 
 ## Setup
