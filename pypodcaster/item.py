@@ -18,11 +18,20 @@ class Item:
         if file_path.endswith('.mp3'):
             id3 = EasyID3(file_path)
             audio = MP3(file_path)
-            self.title = ''.join(id3['title'])
-            self.album = ''.join(id3['album'])
+            if 'title' in id3:
+                self.title = ''.join(id3['title'])
+            else:
+                self.title = ''
+            if 'album' in id3:
+                self.album = ''.join(id3['album'])
+            else:
+                self.album = ''
             # TODO: add ability for user to add description through id3 tag or otherwise
             self.comment = ""
-            self.artist = ''.join(id3['artist'])
+            if 'artist' in id3:
+                self.artist = ''.join(id3['artist'])
+            else:
+                self.artist = ''
             self.subtitle = options.get("subtitle")
             self.url = "%s/%s" % (options.get("podcast_url"), ntpath.basename(file_path))
             self.sort_date = get_date(file_path)
