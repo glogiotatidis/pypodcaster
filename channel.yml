@@ -11,5 +11,5 @@ owner:
   name: 'John Doe'
   email: 'john@doe.com'
 categories: ['Religion & Spirituality', 'Christianity']
-explicit: No
+explicit: 'no'
 keywords: [comma, separated, list]
