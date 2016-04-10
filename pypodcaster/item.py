@@ -3,7 +3,6 @@ import ntpath
 import os
 import re
 import time
-import urllib
 from datetime import datetime
 
 import validators
@@ -34,19 +33,14 @@ class Item:
             else:
                 self.artist = ''
             self.subtitle = options.get("subtitle")
-            self.url = url("%s/%s" % (options.get("podcast_url"), ntpath.basename(file_path)))
+            self.url = "%s/%s" % (options.get("podcast_url"), ntpath.basename(file_path))
             self.sort_date = get_date(file_path)
             # set pub_date to RFC 822 format (e.g. Sat, 07 Sep 2002 0:00:01 GMT)
             self.pub_date = self.sort_date.strftime("%a, %d %b %Y %T ") + time.strftime('%Z')
             self.length = os.stat(file_path).st_size
             self.seconds = audio.info.length
             self.duration = time.strftime('%M:%S', time.gmtime(float(self.seconds)))
-            self.image_url = url(get_image_url(file_path, options, self.title, self.album))
-
-def url(input_url):
-    """Convert to url"""
-    proper_url = urllib.quote(input_url, safe="%/:=&?~#+!$,;'@()*[]")
-    return proper_url
+            self.image_url = get_image_url(file_path, options, self.title, self.album)
 
 def get_image_url(file_path, options, title, album):
     """check for episodic image with similar name or add channel default"""
