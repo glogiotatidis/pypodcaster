@@ -82,7 +82,7 @@ optional arguments:
                         Direct output to FILE instead of stdout
   -V, --version         show program's version number and exit
 
-example: pypodcaster > index.rss
+example: pypodcaster > index.xml
 ```
 
 ## Advanced
