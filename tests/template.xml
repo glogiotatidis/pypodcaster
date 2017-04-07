@@ -18,11 +18,13 @@
             <itunes:email>{{ channel.owner.email }}</itunes:email>
         </itunes:owner>
         <itunes:keywords>{{ channel.keywords|join(', ') }}</itunes:keywords>
+        {% if image -%}
         <image>
             <url>{{ channel.image }}</url>
             <title>{{ channel.title }}</title>
             <link>{{ channel.link }}</link>
         </image>
+        {% endif -%}
         <itunes:image href="{{ channel.image }}" />
         {% for category in channel.categories -%}
         {% if loop.length > 1 -%}

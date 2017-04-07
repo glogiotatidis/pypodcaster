@@ -94,8 +94,11 @@ def main():
     options['podcast_url'] = trailing_slash(options['podcast_url'])
 
     # determine whether cover image is a url
-    if not validators.url(options.get("image", None)):
-        options['image'] = "%s/%s" % (options["podcast_url"], options["image"])
+    try:
+        if not validators.url(options.get("image", None)):
+            options['image'] = "%s/%s" % (options["podcast_url"], options.get("image", None))
+    except TypeError:
+        pass
 
     if args.output:
         with open(args.output, 'w') as output_file:
