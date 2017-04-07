@@ -1,16 +1,18 @@
 __author__ = 'mantlepro'
 
 import yaml
-from nose.tools import *
-from pypodcaster.channel import Channel, Item
+import os
+from pypodcaster import channel, item
+
 
 def test_channel():
-    options = yaml.safe_load(open("/home/mantlepro/Documents/pypodcaster/channel.yml"))
-    Channel('/home/mantlepro/Desktop', options)
+    path = os.path.dirname(__file__)
+    options = yaml.safe_load(open("%s/channel.yml" % path))
+    channel.Channel(os.getcwd(), options)
+
 
 def test_item():
-    options = yaml.safe_load(open("/home/mantlepro/Documents/pypodcaster/channel.yml"))
-    Item('/home/mantlepro/Desktop/Spotlight.mp3', options)
-
-def test_pypodcaster():
-    args
+    path = os.path.dirname(__file__)
+    options = yaml.safe_load(open("%s/channel.yml" % path))
+    mp3_file = "%s/test.mp3" % path
+    item.Item(mp3_file, options)
