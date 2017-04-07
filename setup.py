@@ -9,11 +9,11 @@ requirements = [
 
 setup(
     name='pypodcaster',
-    version='1.2.1',
+    version='2.0.0',
     install_requires=requirements,
     packages=find_packages(exclude=("tests",)),
     url='http://github.com/mantlepro/pypodcaster',
-    license='MIT',
+    license='GPL-3.0',
     author='mantlepro',
     author_email='mantlepro@gmail.com',
     description='Generate podcast feed from mp3 files',

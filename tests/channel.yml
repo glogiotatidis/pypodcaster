@@ -1,0 +1,7 @@
+title: 'Podcast Title'
+link: 'http://example.com'
+description: 'Test channel.'
+podcast_url: 'https://example.com/'
+owner:
+  name: 'John Doe'
+  email: 'john@doe.com'
