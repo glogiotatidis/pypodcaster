@@ -79,7 +79,7 @@ def get_image_url(file_path, options, title, album):
 
     if not found:
         logging.debug("No episodic image found for %s. Using channel default image." % mp3file)
-        image_url = options["image"]
+        image_url = options.get("image", None)
 
     return image_url
 
