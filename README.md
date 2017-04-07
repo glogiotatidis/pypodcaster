@@ -30,7 +30,7 @@ Create a directory to hold your podcast media (e.g. `~/Dropbox/Public`).
 
 Enter channel information into `channel.yml`
 
-Note: `title`, `link`, `description`, and `podcast_url` are required fields. The rest are optional but recommended.
+Note: `title`, `link`, `description`, `owner`, and `podcast_url` are required fields. The rest are optional but recommended.
 
 ```
 title: 'Podcast Title'
