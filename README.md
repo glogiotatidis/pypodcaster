@@ -2,6 +2,8 @@
 
 Simple Podcast Publishing
 
+![Codeship Build Status](https://codeship.com/projects/bf604180-e4fc-0134-5d59-0a6f4d7e1430/status?branch=master "Build Status")
+
 pypodcaster generates a standard iTunes-compatible podcast feed from media files in a directory. Use a Dropbox Public folder or any other public-facing html server to host your podcast.
 
 ## Install
