@@ -6,10 +6,13 @@ from pypodcaster.item import Item
 
 __author__ = 'mantlepro'
 
-import os, glob, jinja2
+import os
+import glob
+import jinja2
 from time import strftime
 
 source_files = []
+
 
 class Channel:
     """Podcast channel. Sources can be a string or list
