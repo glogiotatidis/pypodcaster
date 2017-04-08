@@ -6,7 +6,7 @@ Simple Podcast Publishing
 
 pypodcaster generates a standard iTunes-compatible podcast feed from media files in a directory. Use a Dropbox Public folder or any other public-facing html server to host your podcast.
 
-## Install
+## Installation
 
 If you have `git` installed
 
@@ -58,19 +58,21 @@ To find your Dropbox url, right-click any file inside your Dropbox/Public/podcas
 
 `cd` to directory containing podcast media and run
 
-    pypodcaster > podcast.xml
+    pypodcaster -o podcast.xml
 
 pypodcaster will create `podcast.xml` with settings from `channel.yml`. Run the command every time you wish to update the podcast feed.
 
 To see everything pypodcaster is capable of, run `pypodcaster --help`
 
 ```
-$ pypodcaster --help
 usage: pypodcaster [-h] [-c /path/to/channel.yml] [-o OUTPUT] [-V]
                    [sources [sources ...]]
 
-pypodcaster - free, open source podcast rss generator by Josh Wheeler
-<mantlepro@gmail.com>
+pypodcaster: generate podcast xml feed from a directory of media files.
+Copyright (C) 2015-2017 Josh Wheeler. This program comes with ABSOLUTELY NO
+WARRANTY. This is free software, and you are welcome to redistribute it under
+certain conditions. For details, visit
+https://github.com/mantlepro/pypodcaster
 
 positional arguments:
   sources               Specify source files or directories
@@ -84,7 +86,7 @@ optional arguments:
                         Direct output to FILE instead of stdout
   -V, --version         show program's version number and exit
 
-example: pypodcaster > index.xml
+example: pypodcaster -o index.xml
 ```
 
 ## Advanced
