@@ -8,6 +8,14 @@ pypodcaster generates a standard iTunes-compatible podcast feed from media files
 
 ## Installation
 
+### Install from PyPI using `pip`
+
+The easiest way to install pypodcaster is via `pip install` from the [Python Package Index](https://pypi.python.org/pypi)
+
+    pip install pypodcaster
+
+### Alternatively, install with `setup.py`
+
 If you have `git` installed
 
     git clone https://github.com/mantlepro/pypodcaster.git
