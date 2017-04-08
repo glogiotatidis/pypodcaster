@@ -16,7 +16,7 @@ setup(
     license='GPL-3.0',
     author='mantlepro',
     author_email='mantlepro@gmail.com',
-    description='Generate podcast feed from mp3 files',
+    description='Generate podcast xml feed from a directory of media files',
     package_data={'pypodcaster': ['templates/*']},
     entry_points = {
         'console_scripts': ['pypodcaster = pypodcaster.__main__:main']
