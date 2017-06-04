@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 """__main__.py: main entry point for pypodcaster"""
 
