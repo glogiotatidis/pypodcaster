@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 """podcast.py: essential podcast objects and their functions"""
 
