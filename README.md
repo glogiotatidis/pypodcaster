@@ -4,7 +4,7 @@ Simple Podcast Publishing
 
 ![Codeship Build Status](https://codeship.com/projects/bf604180-e4fc-0134-5d59-0a6f4d7e1430/status?branch=master "Build Status")
 
-pypodcaster generates a standard iTunes-compatible podcast feed from media files in a directory. Use a Dropbox Public folder or any other public-facing html server to host your podcast.
+pypodcaster generates a standard iTunes-compatible podcast feed from media files in a directory. Use any public-facing html server to host your podcast.
 
 ## Installation
 
@@ -32,7 +32,7 @@ Download the zip: https://github.com/mantlepro/pypodcaster/archive/master.zip
 
 ## Setup
 
-Create a directory to hold your podcast media (e.g. `~/Dropbox/Public`).
+Create a directory to hold podcast media
 
     mkdir podcast
 
@@ -57,12 +57,6 @@ categories: ['Religion & Spirituality', 'Christianity']
 explicit: No
 keywords: [comma, separated, list]
 ```
-
-#### Dropbox URL
-
-To find your Dropbox url, right-click any file inside your Dropbox/Public/podcast directory and select Dropbox > Copy Public Link. `Replace 12345678` in the example above with your actual Dropbox id.
-
-## Usage
 
 `cd` to directory containing podcast media and run
 
@@ -117,13 +111,13 @@ If album name is used, the image will carry across an entire series. If no jpg i
 #### Example
 
 ```
-Contents of Dropbox/Public/podcast:
-  First Podcast.mp3
-  First Podcast.jpg # lower case "first podcast.jpg" would also work
+Contents of /var/www/html/podcast:
+  first_podcast.mp3
+  first_podcast.jpg
   series01.mp3
   series02.mp3
   series03.mp3
-  Series Name.jpg # from id3's album tag. 
+  Series Name.jpg # from id3's album tag. series_name.jpg should also work
 ```
 
 ### Customize XML Template
@@ -141,5 +135,5 @@ Use [Feedburner](http://feedburner.com) as a middle-man to:
 
 ## Podcast Specifications
 
-- [iTunes Podcast Specs](http://www.apple.com/itunes/podcasts/specs.html)
 - [RSS 2.0 Specifications](https://validator.w3.org/feed/docs/rss2.html)
+- [iTunes Podcast Specs](http://www.apple.com/itunes/podcasts/specs.html)
