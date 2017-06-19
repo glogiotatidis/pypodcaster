@@ -59,7 +59,11 @@
                 {{ item.comment|e }}
             </description>
             {% endif -%}
+            {% if item.image_url -%}
             <itunes:image href="{{ item.image_url }}" />
+            {% else -%}
+            <itunes:image href="{{ channel.image }}" />
+            {% endif -%}
             <enclosure url="{{ item.url }}" length="{{ item.length }}" type="audio/mpeg" />
             <guid>{{ item.url }}</guid>
             <pubDate>{{ item.pub_date }}</pubDate>
