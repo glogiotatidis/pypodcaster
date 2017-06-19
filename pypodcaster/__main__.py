@@ -102,9 +102,10 @@ def main():
 
     if args.output:
         with open(args.output, 'w') as output_file:
-            output_file.write("%s\n" %
-                              Channel(sources_list, options)
-                              .render_xml())
+            output_file.write("%s\n" % Channel(sources_list, options)
+                              .render_xml()
+                              .encode("utf8")
+                              )
     else:
         print(
             Channel(sources_list, options)
